@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: forecast-svc
+  datasource:
+    url: jdbc:mysql://localhost:3306/forecast_svc
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baselineOnMigrate: true
+    validateOnMigrate: true
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    properties.hibernate.format_sql: true
+    hibernate:
+      ddl-auto: update
+
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+      linger.ms: 5
+      properties:
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+    consumer:
+      group-id: forecast
+      key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+weather-map:
+  api:
+    url: https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric&lang=vi
+    apiKey: 6015f94b4184a4025e54c6bde65f15fd
