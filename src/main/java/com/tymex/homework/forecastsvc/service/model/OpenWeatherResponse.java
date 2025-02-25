@@ -3,8 +3,6 @@ package com.tymex.homework.forecastsvc.service.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
-
-import java.sql.Timestamp;
 import java.util.List;
 
 @Data
@@ -57,12 +55,7 @@ public class OpenWeatherResponse {
         @Data
         @Builder
         public static class Sys {
-            private Timestamp sunrise;
-            private Timestamp sunset;
+            private long sunrise;
+            private long sunset;
         }
-//        @Data
-//        @Builder
-//        public static class City {
-//            private String name;
-//        }
 }
