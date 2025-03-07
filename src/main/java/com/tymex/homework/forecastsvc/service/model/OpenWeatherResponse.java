@@ -35,7 +35,6 @@ public class OpenWeatherResponse {
             private double temp_max;
             private int humidity;
             private int pressure;
-//            private int sea_level;
         }
 
         @Data

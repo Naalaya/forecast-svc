@@ -6,11 +6,12 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+    generate-ddl: true
   flyway:
     enabled: true
+    baseline-on-migrate: true
+    baseline-version: 1.0.0
     locations: classpath:db/migration
-    baselineOnMigrate: true
-    validateOnMigrate: true
   jpa:
     generate-ddl: false
     show-sql: true
@@ -29,7 +30,7 @@ spring:
         enable.idempotence: true
         max.in.flight.requests.per.connection: 5
     consumer:
-      group-id: forecast
+      group-id: forecastNotificationTopic
       key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 

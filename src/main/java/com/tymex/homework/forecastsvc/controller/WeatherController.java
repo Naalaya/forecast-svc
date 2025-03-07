@@ -16,13 +16,8 @@ public class WeatherController {
     private final ForecastService forecastService;
     @GetMapping("/forecast/cityName")
     public ResponseEntity<?> getForecastByCityName(@RequestHeader("City-Name") String cityName) {
-        try {
             ResponseEntity<WeatherResponse> response = forecastService.getForecastByCityName(cityName);
             log.info("Function called: {}, cityName: {}", "getWeatherByCityName", cityName);
             return response;
-        } catch (Exception e) {
-            log.info("Function called got error: {}, e.getMessage(): {}", "getWeatherByCityName", e.getMessage());
-            throw e;
-        }
     }
 }

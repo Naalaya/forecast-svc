@@ -23,21 +23,8 @@ public class OpenWeatherServiceImpl implements WeatherService {
     private String apiKey;
 
     @Override
-    public OpenWeatherResponse getForecastByCityName(String cityName) {
-
-// //     Thay thế {cityName} và {apiKey}
-//        String expandedUrl = UriComponentsBuilder.fromHttpUrl(openWeatherUrl)
-//                .buildAndExpand(cityName, apiKey)
-//                .toUriString();
+    public OpenWeatherResponse getForecastFromOpenWeather(String cityName) throws HttpClientErrorException {
         String url = openWeatherUrl.replace("{cityName}", cityName).replace("{apiKey}", apiKey);
-        try {
-            return restTemplate.getForObject(url, OpenWeatherResponse.class);
-        } catch (HttpClientErrorException exception) {
-//            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Error fetching data from OpenWeather");
-            throw exception;
-        } catch(Exception e) {
-            log.error("New exception has occurred with msg: {} ",e.getMessage());
-            throw e;
-        }
+        return restTemplate.getForObject(url, OpenWeatherResponse.class);
     }
 }

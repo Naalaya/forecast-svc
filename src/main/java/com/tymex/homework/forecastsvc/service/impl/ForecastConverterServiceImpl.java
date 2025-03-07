@@ -11,12 +11,11 @@ import java.time.Instant;
 @Component
 public class ForecastConverterServiceImpl implements ForecastConverterService {
 
+    private Timestamp timestampConverter(Long value){
+        return Timestamp.from(Instant.ofEpochSecond(value));
+    }
     @Override
     public ForecastHistory convertToRecord(OpenWeatherResponse response) {
-
-        Timestamp sunset = Timestamp.from(Instant.ofEpochSecond(response.getSys().getSunset()));
-        Timestamp sunrise = Timestamp.from(Instant.ofEpochSecond(response.getSys().getSunrise()));
-
         return ForecastHistory.builder()
                 .cityName(response.getName())
                 .cod(response.getCod())
@@ -31,19 +30,14 @@ public class ForecastConverterServiceImpl implements ForecastConverterService {
                 .pressure(response.getMain().getPressure())
                 .windSpeed(response.getWind().getSpeed())
                 .windDeg(response.getWind().getDeg())
-//                .windGust(response.getWind().getGust())
                 .cloudPercentage(response.getClouds().getAll())
-//                .sunrise(response.getSys().getSunrise())
-//                .sunset(response.getSys().getSunset())
-                .sunrise(sunrise)
-                .sunset(sunset)
+                .sunrise(timestampConverter(response.getSys().getSunrise()))
+                .sunset(timestampConverter(response.getSys().getSunset()))
                 .build();
     }
 
     @Override
     public WeatherResponse convertApiResponse(OpenWeatherResponse response){
-        Timestamp sunset = Timestamp.from(Instant.ofEpochSecond(response.getSys().getSunset()));
-        Timestamp sunrise = Timestamp.from(Instant.ofEpochSecond(response.getSys().getSunrise()));
         return WeatherResponse.builder()
                 .cityName(response.getName())
                 .msg(response.getMessage())
@@ -64,8 +58,8 @@ public class ForecastConverterServiceImpl implements ForecastConverterService {
                         .build())
                 .Cloud_percentage(response.getClouds().getAll())
                 .sun_sys(WeatherResponse.Sun.builder()
-                                .dawn(sunset)
-                                .gust(sunrise)
+                                .dawn(timestampConverter(response.getSys().getSunrise()))
+                                .gust(timestampConverter(response.getSys().getSunset()))
                         .build())
                 .build();
     }
