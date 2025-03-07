@@ -1,18 +1,18 @@
 package com.tymex.homework.forecastsvc.service.impl;
 
+import com.tymex.homework.forecastsvc.service.OpenWeatherService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-import com.tymex.homework.forecastsvc.service.WeatherService;
 import com.tymex.homework.forecastsvc.service.model.OpenWeatherResponse;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class OpenWeatherServiceImpl implements WeatherService {
+public class OpenOpenWeatherServiceImpl implements OpenWeatherService {
 
     private final RestTemplate restTemplate;
 
