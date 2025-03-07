@@ -26,54 +26,54 @@ public class ForecastHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name ="cod", nullable = false)
     private int cod;
 
-    @Column(name= "message",nullable = true)
+    @Column(name= "message")
     private String message;
 
     @Column(name = "city_name", nullable = false)
     private String cityName;
 
-    @Column(name = "weather_id", nullable = true)
+    @Column(name = "weather_id")
     private int weatherId;
 
-    @Column(name = "weather_main", nullable = true)
+    @Column(name = "weather_main")
     private String weatherMain;
 
-    @Column(name = "weather_description", nullable = true)
+    @Column(name = "weather_description")
     private String weatherDescription;
 
-    @Column(name = "temperature", nullable = true)
+    @Column(name = "temperature")
     private double temperature;
 
-    @Column(name = "temperature_min", nullable = true)
+    @Column(name = "temperature_min")
     private double temperatureMin;
 
-    @Column(name = "temperature_max", nullable = true)
+    @Column(name = "temperature_max")
     private double temperatureMax;
 
-    @Column(name ="humidity",nullable = true)
+    @Column(name ="humidity")
     private int humidity;
 
-    @Column(name ="pressure",nullable = true)
+    @Column(name ="pressure")
     private int pressure;
 
-    @Column(name = "wind_speed", nullable = true)
+    @Column(name = "wind_speed")
     private double windSpeed;
 
-    @Column(name = "wind_deg", nullable = true)
+    @Column(name = "wind_deg")
     private int windDeg;
 
-    @Column(name = "wind_gust", nullable = true)
+    @Column(name = "wind_gust")
     private double windGust;
 
-    @Column(name = "cloud_percentage", nullable = true)
+    @Column(name = "cloud_percentage")
     private int cloudPercentage;
 
-    @Column(name ="sunrise",nullable = true)
+    @Column(name ="sunrise")
     private Timestamp sunrise;
 
-    @Column(name = "sunset",nullable = true)
+    @Column(name = "sunset")
     private Timestamp sunset;
 }
