@@ -21,17 +21,14 @@ spring:
   kafka:
     bootstrap-servers: localhost:29092
     producer:
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      acks: all
+      acks: -1
       retries: 3
       linger.ms: 5
       properties:
         enable.idempotence: true
         max.in.flight.requests.per.connection: 5
-    consumer:
-      group-id: forecastNotificationTopic
-      key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
 weather-map:
   api:
