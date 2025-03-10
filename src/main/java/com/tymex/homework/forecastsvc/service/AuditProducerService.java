@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tymex.homework.forecastsvc.model.AuditLogs;
 import com.tymex.homework.forecastsvc.repository.AuditLogsRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -23,6 +24,7 @@ public class AuditProducerService {
     private final ObjectMapper objectMapper;
 
 
+    @Transactional
     public void logAndPublish(String event, String state, String cityName, Object content) throws JsonProcessingException {
         try {
             String contentToString = objectMapper.writeValueAsString(content);

@@ -12,7 +12,7 @@ import com.tymex.homework.forecastsvc.service.model.OpenWeatherResponse;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class OpenOpenWeatherServiceImpl implements OpenWeatherService {
+public class OpenWeatherServiceImpl implements OpenWeatherService {
 
     private final RestTemplate restTemplate;
 
