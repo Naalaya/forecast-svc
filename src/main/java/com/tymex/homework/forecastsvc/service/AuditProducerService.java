@@ -35,7 +35,7 @@ public class AuditProducerService {
             kafkaTemplate.send("forecastNotificationTopic", cityName, objectMapper.writeValueAsString(msg))
                     .whenComplete((record, exception) -> {
                         if (exception != null) {
-                            log.error("Error sending message", exception.getMessage());
+                            log.error("Error sending message: {}", exception.getMessage());
                         }
 
                         auditLogRepo.save(msg);
