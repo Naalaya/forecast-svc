@@ -1,6 +1,5 @@
 package com.tymex.homework.forecastsvc.controller;
 
-import com.tymex.homework.forecastsvc.service.model.WeatherResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +13,11 @@ import com.tymex.homework.forecastsvc.service.ForecastService;
 public class WeatherController {
 
     private final ForecastService forecastService;
-    @GetMapping("/forecast/cityName")
-    public ResponseEntity<?> getForecastByCityName(@RequestHeader("City-Name") String cityName) {
-            ResponseEntity<WeatherResponse> response = forecastService.getForecastByCityName(cityName);
-            log.info("Function called: {}, cityName: {}", "getWeatherByCityName", cityName);
-            return response;
+
+    @GetMapping("/forecast/")
+    public ResponseEntity getForecastByCityName(@RequestHeader("City-Name") String cityName) {
+            log.info("[Forecast-svc]: received city name: {}", cityName);
+            forecastService.getForecastByCityName(cityName);
+            return ResponseEntity.ok().build();
     }
 }

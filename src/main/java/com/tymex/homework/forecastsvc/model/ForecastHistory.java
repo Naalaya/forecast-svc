@@ -2,8 +2,9 @@ package com.tymex.homework.forecastsvc.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.tymex.homework.forecastsvc.enums.Status;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import lombok.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,11 +24,15 @@ import java.sql.Timestamp;
 @Accessors(chain = true)
 public class ForecastHistory {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name ="cod", nullable = false)
     private int cod;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Column(name= "message")
     private String message;
@@ -65,9 +70,6 @@ public class ForecastHistory {
     @Column(name = "wind_deg")
     private int windDeg;
 
-    @Column(name = "wind_gust")
-    private double windGust;
-
     @Column(name = "cloud_percentage")
     private int cloudPercentage;
 
@@ -76,4 +78,5 @@ public class ForecastHistory {
 
     @Column(name = "sunset")
     private Timestamp sunset;
+
 }

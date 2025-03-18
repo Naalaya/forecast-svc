@@ -6,6 +6,6 @@ import com.tymex.homework.forecastsvc.service.model.WeatherResponse;
 
 public interface ForecastConverterService {
     ForecastHistory convertToRecord(OpenWeatherResponse response);
-    WeatherResponse convertApiResponse(OpenWeatherResponse response);
+    WeatherResponse convertApiResponse(ForecastHistory response);
 }
 

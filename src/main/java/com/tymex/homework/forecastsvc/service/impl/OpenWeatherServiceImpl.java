@@ -23,6 +23,7 @@ public class OpenWeatherServiceImpl implements OpenWeatherService {
     private String apiKey;
 
     @Override
+//    @Transactional(propagation= Propagation.NEVER)
     public OpenWeatherResponse getForecastFromOpenWeather(String cityName) throws HttpClientErrorException {
         String url = openWeatherUrl.replace("{cityName}", cityName).replace("{apiKey}", apiKey);
         return restTemplate.getForObject(url, OpenWeatherResponse.class);
